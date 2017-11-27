@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\EnvironmentSettings.cs" />    <Compile Include="Common\IEnvironmentSettings.cs" />
+    <Compile Include="Common\EnvironmentSettings.cs" />
+    <Compile Include="Common\HostingSettings.cs" />
+    <Compile Include="Common\IEnvironmentSettings.cs" />
     <Compile Include="Exceptions\UnauthorizedException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

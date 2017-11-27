@@ -1,4 +1,5 @@
 ﻿using System;
+using Authentication.Utilities.Common;
 using Microsoft.Owin.Hosting;
 using Owin;
 
@@ -10,8 +11,9 @@ namespace Authentication.API
 
         public void Start()
         {
-            var url = "http://localhost:9001";
+            var url = HostingSettings.StartupUrl;
             WebAppInstance = WebApp.Start(url);
+            Console.WriteLine("Authentication service started at " + url);
         }
 
         public void Stop()
@@ -21,11 +23,7 @@ namespace Authentication.API
 
         public void Configuration(IAppBuilder app)
         {
-            app.Run(context =>
-            {
-                context.Response.ContentType = "text/plain";
-                return context.Response.WriteAsync("Authentication Service started..");
-            });
+
         }
     }
 }
