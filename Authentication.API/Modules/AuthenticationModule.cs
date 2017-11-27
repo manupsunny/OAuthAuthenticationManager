@@ -1,12 +1,27 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Authentication.Service.Models;
+using Authentication.Service.Services;
+using Authentication.Utilities.Common;
+using Authentication.Utilities.Exceptions;
+using Common.Logging;
 using Nancy;
+using Nancy.Extensions;
+using Newtonsoft.Json;
 
 namespace Authentication.API.Modules
 {
     public class AuthenticationModule : NancyModule
     {
-        public AuthenticationModule() : base("/authentication")
+        private readonly ILoginService LoginService;
+        private readonly IEnvironmentSettings EnvironmentSettings;
+        private static readonly ILog Log = LogManager.GetLogger<AuthenticationModule>();
+
+        public AuthenticationModule(ILoginService loginService, IEnvironmentSettings environmentSettings) : base("/authentication")
         {
+            LoginService = loginService;
+            EnvironmentSettings = environmentSettings;
+
             Post["/login", true] = async (x, ct) =>
             {
                 return await Login();
@@ -18,14 +33,43 @@ namespace Authentication.API.Modules
             };
         }
 
-        private Task<dynamic> Logout()
+        private async Task<dynamic> Logout()
         {
-            throw new System.NotImplementedException();
+            var status = HttpStatusCode.Unauthorized;
+            var responseNegotiator = Negotiate.WithHeader("Content-Type", "application/json");
+            var issuer = EnvironmentSettings.JwtIssuer;
+
+            try
+            {
+                var loginRequest = JsonConvert.DeserializeObject<LoginRequest>(Request.Body.AsString());
+                if (ValidateLoginRequest(loginRequest))
+                {
+                    var loginResponse = LoginService.Login(loginRequest, issuer);
+                    if(!loginResponse) throw new UnauthorizedException();
+                    status = HttpStatusCode.OK;
+                }
+            }
+            catch (UnauthorizedException e)
+            {
+                Log.ErrorFormat("Message: {0}, Target: {1}, Stacktrace: {2}", e.Message, e.TargetSite, e.StackTrace);
+            }
+            catch (JsonSerializationException e)
+            {
+                Log.ErrorFormat("Message: {0}, Target: {1}, Stacktrace: {2}", e.Message, e.TargetSite, e.StackTrace);
+            }
+
+            responseNegotiator.WithStatusCode(status);
+            return responseNegotiator;
         }
 
         private Task<dynamic> Login()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
+        }
+
+        private bool ValidateLoginRequest(LoginRequest loginRequest)
+        {
+            return loginRequest.userName != null && loginRequest.password != null;
         }
     }
 }
