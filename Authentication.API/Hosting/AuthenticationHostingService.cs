@@ -3,16 +3,16 @@ using Authentication.Utilities.Common;
 using Microsoft.Owin.Hosting;
 using Owin;
 
-namespace Authentication.API
+namespace Authentication.API.Hosting
 {
-    public class Startup
+    public class AuthenticationHostingService
     {
         private IDisposable WebAppInstance;
 
         public void Start()
         {
             var url = HostingSettings.StartupUrl;
-            WebAppInstance = WebApp.Start(url);
+            WebAppInstance = WebApp.Start<AuthenticationStartup>(url);
             Console.WriteLine("Authentication service started at " + url);
         }
 

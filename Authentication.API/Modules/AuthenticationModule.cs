@@ -22,18 +22,12 @@ namespace Authentication.API.Modules
             LoginService = loginService;
             EnvironmentSettings = environmentSettings;
 
-            Post["/login", true] = async (x, ct) =>
-            {
-                return await Login();
-            };
+            Post["/login", true] = async (x, ct) => await Login();
 
-            Post["/logout", true] = async (x, ct) =>
-            {
-                return await Logout();
-            };
+            Get["/logout", true] = async (x, ct) => await Logout();
         }
 
-        private async Task<dynamic> Logout()
+        private async Task<dynamic> Login()
         {
             var status = HttpStatusCode.Unauthorized;
             var responseNegotiator = Negotiate.WithHeader("Content-Type", "application/json");
@@ -62,9 +56,9 @@ namespace Authentication.API.Modules
             return responseNegotiator;
         }
 
-        private Task<dynamic> Login()
+        private async Task<dynamic> Logout()
         {
-            throw new NotImplementedException();
+            return Response.AsText("Logged out..");
         }
 
         private bool ValidateLoginRequest(LoginRequest loginRequest)

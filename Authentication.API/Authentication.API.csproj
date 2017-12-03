@@ -87,10 +87,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hosting\AuthenticationBootstrapper.cs" />
+    <Compile Include="Hosting\AuthenticationStartup.cs" />
+    <Compile Include="Hosting\Program.cs" />
+    <Compile Include="Hosting\AuthenticationHostingService.cs" />
     <Compile Include="Modules\AuthenticationModule.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

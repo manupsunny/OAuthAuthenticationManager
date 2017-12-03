@@ -1,6 +1,6 @@
 ﻿using Topshelf;
 
-namespace Authentication.API
+namespace Authentication.API.Hosting
 {
     class Program
     {
@@ -8,9 +8,9 @@ namespace Authentication.API
         {
             HostFactory.Run(x =>
             {
-                x.Service<Startup>(s =>
+                x.Service<AuthenticationHostingService>(s =>
                 {
-                    s.ConstructUsing(name => new Startup());
+                    s.ConstructUsing(name => new AuthenticationHostingService());
                     s.WhenStarted(tc => tc.Start());
                     s.WhenStopped(tc => tc.Stop());
                 });
