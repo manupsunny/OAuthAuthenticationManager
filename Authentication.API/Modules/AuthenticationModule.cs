@@ -1,9 +1,10 @@
-﻿using System;
+﻿using System.Security.Authentication;
 using System.Threading.Tasks;
-using Authentication.Service.Models;
+using Authentication.Models.Common;
+using Authentication.Models.Exceptions;
+using Authentication.Models.Models;
 using Authentication.Service.Services;
-using Authentication.Utilities.Common;
-using Authentication.Utilities.Exceptions;
+using Authentication.Service.Services.Login;
 using Common.Logging;
 using Nancy;
 using Nancy.Extensions;
@@ -17,7 +18,8 @@ namespace Authentication.API.Modules
         private readonly IEnvironmentSettings EnvironmentSettings;
         private static readonly ILog Log = LogManager.GetLogger<AuthenticationModule>();
 
-        public AuthenticationModule(ILoginService loginService, IEnvironmentSettings environmentSettings) : base("/authentication")
+        public AuthenticationModule(ILoginService loginService, IEnvironmentSettings environmentSettings) : base(
+            "/authentication")
         {
             LoginService = loginService;
             EnvironmentSettings = environmentSettings;
@@ -30,18 +32,33 @@ namespace Authentication.API.Modules
         private async Task<dynamic> Login()
         {
             var status = HttpStatusCode.Unauthorized;
-            var responseNegotiator = Negotiate.WithHeader("Content-Type", "application/json");
             var issuer = EnvironmentSettings.JwtIssuer;
 
+            var responseNegotiator = Negotiate.WithHeader("Content-Type", "application/json");
             try
             {
                 var loginRequest = JsonConvert.DeserializeObject<LoginRequest>(Request.Body.AsString());
+                loginRequest.ConsumerKey = (ConsumerKey) Context.Items["ConsumerKey"];
                 if (ValidateLoginRequest(loginRequest))
                 {
-                    var loginResponse = LoginService.Login(loginRequest, issuer);
-                    if(!loginResponse) throw new UnauthorizedException();
+                    var loginResponse = await LoginService.Login(loginRequest, issuer);
+                    if (loginResponse == null) throw new UnauthorizedException();
+                    responseNegotiator.WithModel(new
+                    {
+                        loginResponse.AccessToken.UserID,
+                        loginResponse.AccessToken.ProfileID,
+                        loginResponse.AccessToken.Role
+                    });
+                    responseNegotiator.WithHeader("Access-Token",
+                        loginResponse.AccessToken.ToJWT(EnvironmentSettings.SecretKey));
+                    responseNegotiator.WithHeader("Refresh-Token",
+                        loginResponse.RefreshToken.ToJWT(EnvironmentSettings.SecretKey));
                     status = HttpStatusCode.OK;
                 }
+            }
+            catch (AuthenticationException e)
+            {
+                Log.ErrorFormat("Message: {0}, Target: {1}, Stacktrace: {2}", e.Message, e.TargetSite, e.StackTrace);
             }
             catch (UnauthorizedException e)
             {

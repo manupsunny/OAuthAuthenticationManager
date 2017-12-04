@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Authentication.Utilities.Common
+namespace Authentication.Models.Common
 {
     public class EnvironmentSettings : IEnvironmentSettings
     {

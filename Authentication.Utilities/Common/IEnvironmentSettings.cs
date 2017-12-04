@@ -1,4 +1,4 @@
-﻿namespace Authentication.Utilities.Common
+﻿namespace Authentication.Models.Common
 {
     public interface IEnvironmentSettings
     {

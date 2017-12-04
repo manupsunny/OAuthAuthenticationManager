@@ -1,7 +1,7 @@
-﻿using Authentication.Utilities.Common;
+﻿using Authentication.Models.Common;
 using Autofac;
 
-namespace Authentication.Utilities
+namespace Authentication.Models
 {
     public class AuthenticationUtilitiesAutofacRegistry
     {

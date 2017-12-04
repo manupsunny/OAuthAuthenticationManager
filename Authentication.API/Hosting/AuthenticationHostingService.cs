@@ -1,5 +1,5 @@
 ﻿using System;
-using Authentication.Utilities.Common;
+using Authentication.Models.Common;
 using Microsoft.Owin.Hosting;
 using Owin;
 
@@ -23,7 +23,6 @@ namespace Authentication.API.Hosting
 
         public void Configuration(IAppBuilder app)
         {
-
         }
     }
 }

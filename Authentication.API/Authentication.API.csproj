@@ -103,9 +103,9 @@
       <Project>{1497e775-1560-4652-a00f-210bfed3b713}</Project>
       <Name>Authentication.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Authentication.Utilities\Authentication.Utilities.csproj">
+    <ProjectReference Include="..\Authentication.Utilities\Authentication.Models.csproj">
       <Project>{ee991c48-2231-4ce6-9fbd-4449a8dc0232}</Project>
-      <Name>Authentication.Utilities</Name>
+      <Name>Authentication.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

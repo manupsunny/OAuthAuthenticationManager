@@ -1,5 +1,5 @@
-﻿using Authentication.Service;
-using Authentication.Utilities;
+﻿using Authentication.Models;
+using Authentication.Service;
 using Autofac;
 using Nancy.Bootstrappers.Autofac;
 

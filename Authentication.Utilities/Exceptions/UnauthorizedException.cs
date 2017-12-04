@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Authentication.Utilities.Exceptions
+namespace Authentication.Models.Exceptions
 {
     public class UnauthorizedException : Exception
     {
