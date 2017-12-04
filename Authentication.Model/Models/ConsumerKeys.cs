@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Authentication.Models.Services;
+using Authentication.Model.Services;
 
-namespace Authentication.Models.Models
+namespace Authentication.Model.Models
 {
     public class ConsumerKeys : IConsumerKeys
     {

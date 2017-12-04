@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using Authentication.Models.Exceptions;
+using Authentication.Model.Exceptions;
 
-namespace Authentication.Models.Models
+namespace Authentication.Model.Models
 {
     public class AccessToken : UserToken
     {

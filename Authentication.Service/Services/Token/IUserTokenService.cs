@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Authentication.Models.Models;
+using Authentication.Model.Models;
 
 namespace Authentication.Service.Services.Token
 {

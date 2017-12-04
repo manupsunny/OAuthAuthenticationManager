@@ -7,8 +7,8 @@
     <ProjectGuid>{EE991C48-2231-4CE6-9FBD-4449A8DC0232}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Authentication.Models</RootNamespace>
-    <AssemblyName>Authentication.Models</AssemblyName>
+    <RootNamespace>Authentication.Model</RootNamespace>
+    <AssemblyName>Authentication.Model</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

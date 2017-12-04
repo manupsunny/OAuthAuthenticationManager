@@ -1,4 +1,4 @@
-﻿using Authentication.Models;
+﻿using Authentication.Model;
 using Authentication.Service;
 using Autofac;
 using Nancy.Bootstrappers.Autofac;

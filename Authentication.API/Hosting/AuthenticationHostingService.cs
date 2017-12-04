@@ -1,5 +1,5 @@
 ﻿using System;
-using Authentication.Models.Common;
+using Authentication.Model.Common;
 using Microsoft.Owin.Hosting;
 using Owin;
 

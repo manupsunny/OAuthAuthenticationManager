@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Authentication.Models.Exceptions;
+using Authentication.Model.Exceptions;
 using JWT;
 
-namespace Authentication.Models.Models
+namespace Authentication.Model.Models
 {
     public abstract class UserToken
     {

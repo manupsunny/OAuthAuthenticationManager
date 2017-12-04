@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Authentication.Models.Models;
-using Authentication.Models.Repositories;
+using Authentication.Model.Models;
+using Authentication.Model.Repositories;
 
-namespace Authentication.Models.Services
+namespace Authentication.Model.Services
 {
     public class ConsumerKeyService : IConsumerKeyService
     {

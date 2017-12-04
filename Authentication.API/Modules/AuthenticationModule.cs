@@ -1,9 +1,8 @@
 ﻿using System.Security.Authentication;
 using System.Threading.Tasks;
-using Authentication.Models.Common;
-using Authentication.Models.Exceptions;
-using Authentication.Models.Models;
-using Authentication.Service.Services;
+using Authentication.Model.Common;
+using Authentication.Model.Exceptions;
+using Authentication.Model.Models;
 using Authentication.Service.Services.Login;
 using Common.Logging;
 using Nancy;

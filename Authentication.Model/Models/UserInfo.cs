@@ -1,4 +1,4 @@
-﻿namespace Authentication.Models.Models
+﻿namespace Authentication.Model.Models
 {
     public class UserInfo
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Authentication.Models.Models
+namespace Authentication.Model.Models
 {
     public interface IConsumerKeys
     {

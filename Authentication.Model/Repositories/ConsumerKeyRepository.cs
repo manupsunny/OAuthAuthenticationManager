@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Authentication.Models.Models;
+using Authentication.Model.Models;
 
-namespace Authentication.Models.Repositories
+namespace Authentication.Model.Repositories
 {
     public class ConsumerKeyRepository : IConsumerKeyRepository
     {

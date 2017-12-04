@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.API", "Authe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Service", "Authentication.Service\Authentication.Service.csproj", "{1497E775-1560-4652-A00F-210BFED3B713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Models", "Authentication.Utilities\Authentication.Models.csproj", "{EE991C48-2231-4CE6-9FBD-4449A8DC0232}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.Model", "Authentication.Model\Authentication.Model.csproj", "{EE991C48-2231-4CE6-9FBD-4449A8DC0232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

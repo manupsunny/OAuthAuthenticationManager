@@ -99,6 +99,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Authentication.Model\Authentication.Model.csproj">
+      <Project>{ee991c48-2231-4ce6-9fbd-4449a8dc0232}</Project>
+      <Name>Authentication.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Authentication.Service\Authentication.Service.csproj">
       <Project>{1497e775-1560-4652-a00f-210bfed3b713}</Project>
       <Name>Authentication.Service</Name>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Authentication.Models.Exceptions;
-using Authentication.Models.Models;
+using Authentication.Model.Exceptions;
+using Authentication.Model.Models;
 using Authentication.Service.Services.Token;
 using Authentication.Service.Validators;
 using Common.Logging;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Authentication.Models.Models;
+using Authentication.Model.Models;
 using Authentication.Service.Repositories;
 using Authentication.Service.Utilities;
 
