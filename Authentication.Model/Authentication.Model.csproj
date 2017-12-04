@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AuthenticationUtilitiesAutofacRegistry.cs" />
+    <Compile Include="AuthenticationModelAutofacRegistry.cs" />
     <Compile Include="Common\EnvironmentSettings.cs" />
     <Compile Include="Common\HostingSettings.cs" />
     <Compile Include="Common\IEnvironmentSettings.cs" />

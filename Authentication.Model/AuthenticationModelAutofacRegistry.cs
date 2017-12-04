@@ -3,7 +3,7 @@ using Autofac;
 
 namespace Authentication.Model
 {
-    public class AuthenticationUtilitiesAutofacRegistry
+    public class AuthenticationModelAutofacRegistry
     {
         public static void RegisterDependencies(ContainerBuilder builder)
         {

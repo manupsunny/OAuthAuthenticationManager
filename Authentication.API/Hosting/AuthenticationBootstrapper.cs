@@ -12,7 +12,7 @@ namespace Authentication.API.Hosting
             base.ConfigureApplicationContainer(container);
             var builder = new ContainerBuilder();
             AuthenticationServiceAutofacRegistry.RegisterDependencies(builder);
-            AuthenticationUtilitiesAutofacRegistry.RegisterDependencies(builder);
+            AuthenticationModelAutofacRegistry.RegisterDependencies(builder);
             builder.Update(container.ComponentRegistry);
         }
     }
