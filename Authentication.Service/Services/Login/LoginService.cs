@@ -14,14 +14,14 @@ namespace Authentication.Service.Services.Login
         private static readonly ILog Log = LogManager.GetLogger<LoginService>();
 
         private readonly IUserTokenService UserTokenService;
-        private readonly ILoginManager Manager;
+        private readonly ILoginManager LoginManager;
         private readonly IUserInfoManager InfoManager;
 
         public LoginService(ILoginManager loginManager, IUserInfoManager userInfoManager,
             IUserTokenService userTokenService)
         {
             UserTokenService = userTokenService;
-            Manager = loginManager;
+            LoginManager = loginManager;
             InfoManager = userInfoManager;
         }
 
@@ -30,7 +30,7 @@ namespace Authentication.Service.Services.Login
             var userId = -1;
             Role? role = null;
             if (!UserNameValidator.Validate(loginRequest.userName).IsValid)
-                throw new UnauthorizedException();
+                throw new UnauthorizedException("Username not valid !!");
             await Task.Run(() =>
             {
                 userId = GetUserIdIfLoginValid(loginRequest);
@@ -46,7 +46,7 @@ namespace Authentication.Service.Services.Login
         {
             try
             {
-                if (Manager.LoginPasswordMatch(loginRequest.userName, new Password(loginRequest.password),
+                if (LoginManager.LoginPasswordMatch(loginRequest.userName, new Password(loginRequest.password),
                     out var userId))
                 {
                     return userId;
