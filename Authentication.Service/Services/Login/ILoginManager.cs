@@ -1,4 +1,4 @@
-﻿using Authentication.Model.Models;
+﻿using Authentication.Utilities.Models;
 
 namespace Authentication.Service.Services.Login
 {

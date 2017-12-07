@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-using Authentication.Model.Models;
+using Authentication.Utilities.Models;
 using Common.Logging;
 using Nancy;
 

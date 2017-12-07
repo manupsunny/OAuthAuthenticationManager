@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Authentication.Model.Exceptions;
-using Authentication.Model.Models;
 using Authentication.Service.Services.Token;
 using Authentication.Service.Validators;
+using Authentication.Utilities.Exceptions;
+using Authentication.Utilities.Models;
 using Common.Logging;
 
 namespace Authentication.Service.Services.Login

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Authentication.Model.Models;
 using Authentication.Service.Services.Log;
 using Authentication.Service.Utilities;
+using Authentication.Utilities.Models;
 
 namespace Authentication.Service.Services.Token
 {

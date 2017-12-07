@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Authentication.Model;
-using Authentication.Model.Common;
-using Authentication.Model.Models;
-using Authentication.Model.Services;
 using Authentication.Service;
+using Authentication.Utilities;
+using Authentication.Utilities.Common;
+using Authentication.Utilities.Models;
+using Authentication.Utilities.Services;
 using Autofac;
 using Common.Logging;
 using Nancy;
@@ -38,7 +38,7 @@ namespace Authentication.API.Hosting
             StaticConfiguration.DisableErrorTraces = false;
             var builder = new ContainerBuilder();
             AuthenticationServiceAutofacRegistry.RegisterDependencies(builder);
-            AuthenticationModelAutofacRegistry.RegisterDependencies(builder);
+            AuthenticationUtilitiesAutofacRegistry.RegisterDependencies(builder);
             builder.RegisterType<CustomJSONSerializer>().As<JsonSerializer>();
             builder.Update(container.ComponentRegistry);
             EnvironmentSettings = container.Resolve<IEnvironmentSettings>();
