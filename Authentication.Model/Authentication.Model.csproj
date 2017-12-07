@@ -36,6 +36,9 @@
     <Reference Include="JWT, Version=1.3.3.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\JWT.1.3.3\lib\3.5\JWT.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy, Version=1.4.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Nancy.1.4.4\lib\net40\Nancy.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -61,17 +64,23 @@
     <Compile Include="Models\IConsumerKeys.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\LoginResponse.cs" />
+    <Compile Include="Models\LoginType.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="Models\RefreshToken.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\UserIdentity.cs" />
     <Compile Include="Models\UserInfo.cs" />
     <Compile Include="Models\UserToken.cs" />
     <Compile Include="Models\UserTokenLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ConsumerKeyRepository.cs" />
     <Compile Include="Repositories\IConsumerKeyRepository.cs" />
+    <Compile Include="RequestAuthentication.cs" />
     <Compile Include="Services\ConsumerKeyService.cs" />
+    <Compile Include="Services\CustomJSONSerializer.cs" />
     <Compile Include="Services\IConsumerKeyService.cs" />
+    <Compile Include="Validators\AccessTokenValidator.cs" />
+    <Compile Include="Validators\ConsumerKeyValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
