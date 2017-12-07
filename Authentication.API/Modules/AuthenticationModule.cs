@@ -1,4 +1,5 @@
-﻿using System.Security.Authentication;
+﻿using System;
+using System.Security.Authentication;
 using System.Threading.Tasks;
 using Authentication.Model.Common;
 using Authentication.Model.Exceptions;
@@ -74,12 +75,20 @@ namespace Authentication.API.Modules
 
         private async Task<dynamic> Logout()
         {
-            return Response.AsText("Logged out..");
+            var existingUserIdentity = (UserIdentity) Context.CurrentUser;
+            existingUserIdentity.AccessToken.ExpireToken();
+
+            var authToken = existingUserIdentity.AccessToken.ToJWT(EnvironmentSettings.JwtIssuer);
+            var responseNegotiator = Negotiate.WithHeader("Content-Type", "application/json");
+            responseNegotiator.WithHeader("Access-Token", authToken)
+                .WithStatusCode(HttpStatusCode.OK);
+
+            return responseNegotiator;
         }
 
-        private bool ValidateLoginRequest(LoginRequest loginRequest)
+        private static bool ValidateLoginRequest(LoginRequest loginRequest)
         {
-            return loginRequest.userName != null && loginRequest.password != null;
+            return loginRequest.userName != null && loginRequest.password != null && Enum.TryParse(loginRequest.loginType, out LoginType _);
         }
     }
 }

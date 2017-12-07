@@ -65,6 +65,9 @@
     <Reference Include="Nancy.Owin, Version=1.4.1.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\Nancy.Owin.1.4.1\lib\net40\Nancy.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Nancy.Serialization.JsonNet, Version=1.4.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Nancy.Serialization.JsonNet.1.4.1\lib\net40\Nancy.Serialization.JsonNet.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -91,6 +94,7 @@
     <Compile Include="Hosting\AuthenticationStartup.cs" />
     <Compile Include="Hosting\Program.cs" />
     <Compile Include="Hosting\AuthenticationHostingService.cs" />
+    <Compile Include="LoggerExtensions.cs" />
     <Compile Include="Modules\AuthenticationModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
