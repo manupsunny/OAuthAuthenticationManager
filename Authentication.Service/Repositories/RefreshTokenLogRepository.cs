@@ -11,7 +11,7 @@ namespace Authentication.Service.Repositories
 
         public void Save(UserTokenLog userTokenLog)
         {
-            Console.WriteLine("AccessToken Issued");
+            Console.WriteLine("RefreshToken Issued");
             Console.WriteLine($"TokenId = {userTokenLog.TokenId}, " +
                               $"UserId = {userTokenLog.UserId}, " +
                               $"Channel = {userTokenLog.Channel}, " +
