@@ -42,6 +42,21 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c">
       <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.5.14.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\ServiceStack.Common.4.5.14\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43">
+      <HintPath>..\packages\ServiceStack.Interfaces.4.5.14\lib\portable-wp80+sl5+net45+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.5.14.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\ServiceStack.Redis.4.5.14\lib\net45\ServiceStack.Redis.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.5.14.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\ServiceStack.Text.4.5.14\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -60,6 +75,7 @@
     <Compile Include="Repositories\IAccessTokenLogRepository.cs" />
     <Compile Include="Repositories\IRefreshTokenLogRepository.cs" />
     <Compile Include="Repositories\IValidRefreshTokenRepository.cs" />
+    <Compile Include="Repositories\RedisRepository.cs" />
     <Compile Include="Repositories\RefreshTokenLogRepository.cs" />
     <Compile Include="Repositories\ValidRefreshTokenRepository.cs" />
     <Compile Include="Services\IUserInfoManager.cs" />
@@ -70,22 +86,24 @@
     <Compile Include="Services\Log\AccessTokenLogService.cs" />
     <Compile Include="Services\Log\IAccessTokenLogService.cs" />
     <Compile Include="Services\Log\IRefreshTokenLogService.cs" />
+    <Compile Include="Services\Log\IValidRefreshTokenRedisRepository.cs" />
+    <Compile Include="Services\Log\IValidRefreshTokenService.cs" />
     <Compile Include="Services\Log\RefreshTokenLogService.cs" />
+    <Compile Include="Services\Log\ValidRefreshTokenService.cs" />
     <Compile Include="Services\Token\IUserTokenService.cs" />
     <Compile Include="Services\Token\IValidRefreshTokenService.cs" />
     <Compile Include="Services\Token\UserTokenService.cs" />
     <Compile Include="Services\Token\ValidRefreshTokenService.cs" />
     <Compile Include="Services\UserInfoManager.cs" />
-    <Compile Include="Utilities\AuthenticationApplicationSettings.cs" />
-    <Compile Include="Utilities\IAuthenticationApplicationSettings.cs" />
-    <Compile Include="Utilities\IDUtility.cs" />
-    <Compile Include="Validators\UserNameValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Authentication.Utilities\Authentication.Utilities.csproj">
       <Project>{ee991c48-2231-4ce6-9fbd-4449a8dc0232}</Project>
       <Name>Authentication.Utilities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

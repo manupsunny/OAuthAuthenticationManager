@@ -7,7 +7,10 @@ namespace Authentication.Utilities.Models
     {
         public string UserName { get; private set; }
 
-        public IEnumerable<string> Claims { get {return new List<string>();} }
+        public IEnumerable<string> Claims
+        {
+            get { return new List<string>(); }
+        }
 
         public AccessToken AccessToken { get; private set; }
 

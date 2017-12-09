@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Authentication.Service.Services.Log;
-using Authentication.Service.Utilities;
+using Authentication.Utilities.Common;
 using Authentication.Utilities.Models;
 
 namespace Authentication.Service.Services.Token
@@ -30,7 +30,7 @@ namespace Authentication.Service.Services.Token
             var refreshTokenLog = new UserTokenLog(refreshToken);
 
             await ValidRefreshTokenService.Save(refreshToken);
-            await RefreshTokenLogService.Save(refreshTokenLog);
+            RefreshTokenLogService.Save(refreshTokenLog);
             return refreshToken;
         }
 
@@ -51,7 +51,7 @@ namespace Authentication.Service.Services.Token
                 new AccessToken("", "", "", Role.ANONYMOUS.ToString(), consumerKey, accessTokenId, issuer);
             var accessTokenLog = new UserTokenLog(accessToken);
 
-            await AccessTokenLogService.Save(accessTokenLog);
+            AccessTokenLogService.Save(accessTokenLog);
             return accessToken;
         }
 
@@ -62,7 +62,7 @@ namespace Authentication.Service.Services.Token
                 refreshToken.Role.ToString(), refreshToken.ConsumerKey, accessTokenId, refreshToken.JwtIssuer);
             var accessTokenLog = new UserTokenLog(accessToken);
 
-            await AccessTokenLogService.Save(accessTokenLog);
+            AccessTokenLogService.Save(accessTokenLog);
             return accessToken;
         }
     }

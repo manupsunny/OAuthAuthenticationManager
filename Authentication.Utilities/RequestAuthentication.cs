@@ -32,7 +32,8 @@ namespace Authentication.Utilities
 
         private static bool IsValidAuthenticatedUser(NancyContext context, string issuer, string secretKey)
         {
-            return AccessTokenValidator.Validate(context, issuer, secretKey) && !string.IsNullOrWhiteSpace(context.CurrentUser != null ? context.CurrentUser.UserName : null);
+            return AccessTokenValidator.Validate(context, issuer, secretKey) &&
+                   !string.IsNullOrWhiteSpace(context.CurrentUser != null ? context.CurrentUser.UserName : null);
         }
 
         private static bool IsValidAnonymousUser(NancyContext context, string issuer, string secretKey)

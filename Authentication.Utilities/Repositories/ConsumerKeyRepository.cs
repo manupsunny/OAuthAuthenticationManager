@@ -15,12 +15,14 @@ namespace Authentication.Utilities.Repositories
                 Id = new Guid("10000000-0000-0000-0000-000000000000"),
                 Value = "app"
             },
-            new ConsumerKey{
+            new ConsumerKey
+            {
                 Channel = "Web",
                 Id = new Guid("20000000-0000-0000-0000-000000000000"),
                 Value = "web"
             }
         };
+
         public async Task<ConsumerKey> Find(string consumerKey)
         {
             return consumerKeys.Find(x => x.Channel.ToLower().Equals(consumerKey.ToLower()));
@@ -28,7 +30,6 @@ namespace Authentication.Utilities.Repositories
 
         public async Task<IEnumerable<ConsumerKey>> FindAll()
         {
-
             return consumerKeys;
         }
     }

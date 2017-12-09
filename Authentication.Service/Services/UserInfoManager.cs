@@ -8,7 +8,28 @@ namespace Authentication.Service.Services
     {
         public bool TryLoad(int userId, out UserInfo userInfo)
         {
-            throw new NotImplementedException();
+            if (userId == 0)
+            {
+                userInfo = new UserInfo
+                {
+                    IsAdmin = false,
+                    IsUser = true
+                };
+                return true;
+            }
+
+            if (userId == 1)
+            {
+                userInfo = new UserInfo
+                {
+                    IsAdmin = true,
+                    IsUser = true
+                };
+                return true;
+            }
+
+            userInfo = null;
+            return false;
         }
     }
 }

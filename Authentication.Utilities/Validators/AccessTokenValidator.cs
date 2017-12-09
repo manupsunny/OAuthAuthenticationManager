@@ -18,7 +18,7 @@ namespace Authentication.Utilities.Validators
                 var consumerKey = context.Items.ContainsKey("ConsumerKey") ? context.Items["ConsumerKey"] : null;
                 if (consumerKey == null || accessTokenJWT == null) return false;
 
-                var accessToken = AccessToken.FromJWT(accessTokenJWT, (ConsumerKey)consumerKey, issuer, secretKey);
+                var accessToken = AccessToken.FromJWT(accessTokenJWT, (ConsumerKey) consumerKey, issuer, secretKey);
                 if (accessToken == null) return false;
 
                 context.CurrentUser = new UserIdentity(accessToken);

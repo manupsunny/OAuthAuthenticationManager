@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using Authentication.Utilities.Models;
 
 namespace Authentication.Service.Repositories
@@ -7,14 +7,24 @@ namespace Authentication.Service.Repositories
     [AutofacRegister(RegisterType.Singleton)]
     public class RefreshTokenLogRepository : IRefreshTokenLogRepository
     {
-        public Task<int> Save(UserTokenLog userTokenLog)
+        private readonly List<UserTokenLog> refreshTokenLogs = new List<UserTokenLog>();
+
+        public void Save(UserTokenLog userTokenLog)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("AccessToken Issued");
+            Console.WriteLine($"TokenId = {userTokenLog.TokenId}, " +
+                              $"UserId = {userTokenLog.UserId}, " +
+                              $"Channel = {userTokenLog.Channel}, " +
+                              $"StartTime = {userTokenLog.StartTime}, " +
+                              $"EndTime = {userTokenLog.EndTime}");
+
+            refreshTokenLogs.Add(userTokenLog);
+            // Save this to a persistent storage for future reference
         }
 
-        public Task<UserTokenLog> Find(string tokenId)
+        public UserTokenLog Find(string tokenId)
         {
-            throw new NotImplementedException();
+            return refreshTokenLogs.Find(x => x.TokenId.Equals(tokenId));
         }
     }
 }

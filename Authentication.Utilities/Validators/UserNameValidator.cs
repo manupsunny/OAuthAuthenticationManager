@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Authentication.Service.Validators
+namespace Authentication.Utilities.Validators
 {
     public class UserNameValidator
     {
@@ -12,18 +12,17 @@ namespace Authentication.Service.Validators
 
     public class UserNameValidatorResponse
     {
-        public readonly bool IsValid;
-        private string UserName;
+        public bool IsValid => IsValidEmailAddress(UserName);
+        private readonly string UserName;
 
         public UserNameValidatorResponse(string userName)
         {
             UserName = userName;
-            IsValid = IsValidEmailAddress(userName);
         }
 
-        private bool IsValidEmailAddress(string emailAddress)
+        private static bool IsValidEmailAddress(string emailAddress)
         {
-            var emailAddressPattern = @"^[a-zA-Z0-9](\w|\.)*@[a-zA-Z0-9](\w)+\.[a-zA-Z]+";
+            const string emailAddressPattern = @"^[a-zA-Z0-9](\w|\.)*@[a-zA-Z0-9](\w)+\.[a-zA-Z]+";
             return Regex.Match(emailAddress, emailAddressPattern).Success;
         }
     }

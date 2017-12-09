@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Authentication.Service.Utilities
+namespace Authentication.Utilities.Common
 {
     public static class IDUtility
     {

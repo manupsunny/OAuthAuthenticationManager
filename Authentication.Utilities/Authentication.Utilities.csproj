@@ -60,9 +60,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationUtilitiesAutofacRegistry.cs" />
-    <Compile Include="Common\EnvironmentSettings.cs" />
-    <Compile Include="Common\HostingSettings.cs" />
-    <Compile Include="Common\IEnvironmentSettings.cs" />
+    <Compile Include="Common\ApplicationSettings.cs" />
+    <Compile Include="Common\IDUtility.cs" />
     <Compile Include="Exceptions\UnauthorizedException.cs" />
     <Compile Include="Models\AccessToken.cs" />
     <Compile Include="Models\ConsumerKey.cs" />
@@ -72,6 +71,7 @@
     <Compile Include="Models\LoginResponse.cs" />
     <Compile Include="Models\LoginType.cs" />
     <Compile Include="Models\Password.cs" />
+    <Compile Include="Models\RedisNodes.cs" />
     <Compile Include="Models\RefreshToken.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\UserIdentity.cs" />
@@ -87,6 +87,7 @@
     <Compile Include="Services\IConsumerKeyService.cs" />
     <Compile Include="Validators\AccessTokenValidator.cs" />
     <Compile Include="Validators\ConsumerKeyValidator.cs" />
+    <Compile Include="Validators\UserNameValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

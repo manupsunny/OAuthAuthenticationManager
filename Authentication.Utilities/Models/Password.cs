@@ -25,7 +25,7 @@ namespace Authentication.Utilities.Models
 
         public bool IsValid()
         {
-            var password = this.Value();
+            var password = Value();
             return Regex.IsMatch(password, STRONG_PASSWORD_REGEX, RegexOptions.Singleline);
         }
     }

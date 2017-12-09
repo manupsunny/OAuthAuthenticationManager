@@ -20,7 +20,8 @@ namespace Authentication.API
             var requestClientIP = context.Request.UserHostAddress;
             var requestUserAgent = context.Request.Headers.UserAgent;
             var requestReferralURL = context.Request.Headers.Referrer;
-            logger.InfoFormat("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}", requestScheme, requestHost, requestURL, requestPort,
+            logger.InfoFormat("{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}", requestScheme, requestHost, requestURL,
+                requestPort,
                 requestMethod, requestClientIP, requestUserAgent, requestQueryParams, requestReferralURL);
         }
 
@@ -39,12 +40,12 @@ namespace Authentication.API
             var consumerChannel = string.Empty;
             if (context.Items.ContainsKey("ConsumerKey"))
             {
-                consumerChannel = ((ConsumerKey)context.Items["ConsumerKey"]).Channel;
+                consumerChannel = ((ConsumerKey) context.Items["ConsumerKey"]).Channel;
             }
             var tokenID = string.Empty;
             if (context.CurrentUser != null)
             {
-                var userIdentity = (UserIdentity)context.CurrentUser;
+                var userIdentity = (UserIdentity) context.CurrentUser;
                 tokenID = userIdentity.AccessToken.TokenID;
             }
             var responseStatus = context.Response.StatusCode.ToString();
@@ -73,7 +74,7 @@ namespace Authentication.API
         private static long StopWatchStop(NancyContext ctx)
         {
             if (!ctx.Items.ContainsKey("stopwatch")) return 0;
-            var stopwatch = (Stopwatch)ctx.Items["stopwatch"];
+            var stopwatch = (Stopwatch) ctx.Items["stopwatch"];
             stopwatch.Stop();
             return stopwatch.ElapsedMilliseconds;
         }

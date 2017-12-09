@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Authentication.Service.Services.Token;
-using Authentication.Service.Validators;
 using Authentication.Utilities.Exceptions;
 using Authentication.Utilities.Models;
+using Authentication.Utilities.Validators;
 using Common.Logging;
 
 namespace Authentication.Service.Services.Login
@@ -25,21 +25,30 @@ namespace Authentication.Service.Services.Login
             InfoManager = userInfoManager;
         }
 
-        public async Task<LoginResponse> Login(LoginRequest loginRequest, string issuer)
+        public async Task<LoginResponse> LoginUsingPassword(LoginRequest loginRequest, string issuer)
         {
-            var userId = -1;
-            Role? role = null;
             if (!UserNameValidator.Validate(loginRequest.userName).IsValid)
                 throw new UnauthorizedException("Username not valid !!");
-            await Task.Run(() =>
-            {
-                userId = GetUserIdIfLoginValid(loginRequest);
-                role = GetUserRole(userId);
-            });
+
+            var userId = GetUserIdIfLoginValid(loginRequest);
+            var role = GetUserRole(userId);
+
             if (userId == -1 || role == null) return null;
+
             var loginResponse = await CreateLoginResponse(userId.ToString(),
                 loginRequest.userName, (Role) role, userId.ToString(), loginRequest.ConsumerKey, issuer);
+
             return loginResponse;
+        }
+
+        public Task<LoginResponse> LoginUsingGoogle(LoginRequest loginRequest, string issuer)
+        {
+            throw new NotImplementedException("Feature not implemented !!");
+        }
+
+        public Task<LoginResponse> LoginUsingFacebook(LoginRequest loginRequest, string issuer)
+        {
+            throw new NotImplementedException("Feature not implemented !!");
         }
 
         private int GetUserIdIfLoginValid(LoginRequest loginRequest)
@@ -52,11 +61,13 @@ namespace Authentication.Service.Services.Login
                     return userId;
                 }
             }
+
             catch (Exception e)
             {
                 Log.ErrorFormat("Message: {0}, Target: {1}, Stacktrace: {2}", e.Message, e.TargetSite, e.StackTrace);
                 throw new UnauthorizedException("Error occured!", e);
             }
+
             Log.DebugFormat("Just before throwing Unauthorized");
             throw new UnauthorizedException("Error occured!");
         }
@@ -68,6 +79,7 @@ namespace Authentication.Service.Services.Login
                 if (InfoManager.TryLoad(userId, out var userInfo))
                 {
                     var role = Role.ANONYMOUS;
+
                     if (userInfo.IsAdmin)
                     {
                         role = Role.ADMIN;
@@ -76,6 +88,7 @@ namespace Authentication.Service.Services.Login
                     {
                         role = Role.USER;
                     }
+
                     return role;
                 }
             }

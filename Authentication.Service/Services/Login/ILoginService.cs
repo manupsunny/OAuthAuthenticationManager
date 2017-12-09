@@ -5,6 +5,8 @@ namespace Authentication.Service.Services.Login
 {
     public interface ILoginService
     {
-        Task<LoginResponse> Login(LoginRequest loginRequest, string issuer);
+        Task<LoginResponse> LoginUsingPassword(LoginRequest loginRequest, string issuer);
+        Task<LoginResponse> LoginUsingGoogle(LoginRequest loginRequest, string issuer);
+        Task<LoginResponse> LoginUsingFacebook(LoginRequest loginRequest, string issuer);
     }
 }

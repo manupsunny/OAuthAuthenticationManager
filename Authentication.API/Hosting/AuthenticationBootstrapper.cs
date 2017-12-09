@@ -22,13 +22,12 @@ namespace Authentication.API.Hosting
         private static readonly ILog ResponseLog = LogManager.GetLogger("AuthenticationResponse");
         private static readonly ILog ErrorLog = LogManager.GetLogger("AuthenticationError");
 
-        private IEnvironmentSettings EnvironmentSettings;
-
         protected override NancyInternalConfiguration InternalConfiguration
         {
             get
             {
-                return NancyInternalConfiguration.WithOverrides(c => c.Serializers.Insert(0, typeof (JsonNetSerializer)));
+                return NancyInternalConfiguration.WithOverrides(c =>
+                    c.Serializers.Insert(0, typeof(JsonNetSerializer)));
             }
         }
 
@@ -41,7 +40,6 @@ namespace Authentication.API.Hosting
             AuthenticationUtilitiesAutofacRegistry.RegisterDependencies(builder);
             builder.RegisterType<CustomJSONSerializer>().As<JsonSerializer>();
             builder.Update(container.ComponentRegistry);
-            EnvironmentSettings = container.Resolve<IEnvironmentSettings>();
         }
 
         protected override void ApplicationStartup(ILifetimeScope container, IPipelines pipelines)
@@ -58,7 +56,7 @@ namespace Authentication.API.Hosting
             {
                 RequestLog.InfoNancyRequest(context);
                 return RequestAuthentication.Authenticate(context, consumerKeys, unauthenticatedRoutes, anonmyousRoutes,
-                    EnvironmentSettings.JwtIssuer, EnvironmentSettings.SecretKey)
+                    ApplicationSettings.JwtIssuer, ApplicationSettings.SecretKey)
                     ? (Response) null
                     : HttpStatusCode.Unauthorized;
             };

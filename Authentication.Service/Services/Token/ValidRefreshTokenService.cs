@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Authentication.Service.Repositories;
-using Authentication.Service.Utilities;
+using Authentication.Utilities.Common;
 using Authentication.Utilities.Models;
 
 namespace Authentication.Service.Services.Token
@@ -10,18 +10,15 @@ namespace Authentication.Service.Services.Token
     public class ValidRefreshTokenService : IValidRefreshTokenService
     {
         private readonly IValidRefreshTokenRepository ValidRefreshTokenRepository;
-        private readonly IAuthenticationApplicationSettings AuthenticationApplicationSettings;
 
-        public ValidRefreshTokenService(IValidRefreshTokenRepository validRefreshTokenRepository,
-            IAuthenticationApplicationSettings authenticationApplicationSettings)
+        public ValidRefreshTokenService(IValidRefreshTokenRepository validRefreshTokenRepository)
         {
             ValidRefreshTokenRepository = validRefreshTokenRepository;
-            AuthenticationApplicationSettings = authenticationApplicationSettings;
         }
 
         public async Task<bool> Save(RefreshToken token)
         {
-            var expiry = TimeSpan.FromDays(double.Parse(AuthenticationApplicationSettings.RefreshTokenValidityInDays));
+            var expiry = TimeSpan.FromDays(double.Parse(ApplicationSettings.RefreshTokenValidityInDays));
             return await ValidRefreshTokenRepository.Save(CreateRedisKeyFromToken(token), expiry);
         }
 

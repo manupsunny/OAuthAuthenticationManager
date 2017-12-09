@@ -1,10 +1,10 @@
-﻿using System.Threading.Tasks;
-using Authentication.Utilities.Models;
+﻿using Authentication.Utilities.Models;
 
 namespace Authentication.Service.Repositories
 {
     public interface IAccessTokenLogRepository
     {
-        Task<int> Save(UserTokenLog userTokenLog);
+        void Save(UserTokenLog userTokenLog);
+        UserTokenLog Find(string tokenId);
     }
 }

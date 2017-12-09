@@ -1,24 +1,64 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Authentication.Utilities.Models;
+using StackExchange.Redis;
 
 namespace Authentication.Service.Repositories
 {
     [AutofacRegister(RegisterType.Singleton)]
-    public sealed class ValidRefreshTokenRepository : IValidRefreshTokenRepository
+    public sealed class ValidRefreshTokenRepository : RedisRepository, IValidRefreshTokenRepository
     {
-        public Task<bool> Save(string key, TimeSpan expiry)
+        public async Task<bool> Save(string key, TimeSpan expiry)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() =>
+            {
+                if (null == key)
+                    throw new ArgumentNullException(nameof(key));
+
+                var prefixedKey = GetPrefixedKey(key);
+                var redisDb = GetRedisDatabase();
+
+                redisDb.StringSet(prefixedKey, key, expiry);
+                return true;
+            });
         }
 
-        public Task<bool> TryGet(string key)
+        public async Task<bool> TryGet(string key)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() =>
+            {
+                var success = false;
+                var redisDb = GetRedisDatabase();
+                var prefixedKey = GetPrefixedKey(key);
+                var objFromRedis = redisDb.StringGet(prefixedKey);
+
+                if (!objFromRedis.IsNull)
+                    success = true;
+
+                return success;
+            });
         }
 
-        public Task<bool> Delete(string key)
+        public async Task<bool> Delete(string key)
         {
-            throw new NotImplementedException();
+            return await Task.Run(() =>
+            {
+                var redisDb = GetRedisDatabase();
+                var prefixedKey = GetPrefixedKey(key);
+
+                redisDb.KeyDelete(prefixedKey);
+                return true;
+            });
+        }
+
+        private static IDatabase GetRedisDatabase()
+        {
+            return GetRedisDatabase(RedisNodes.ValidRefreshTokenNode);
+        }
+
+        private static string GetPrefixedKey(string key)
+        {
+            return $"refresh_token_{key}";
         }
     }
 }
